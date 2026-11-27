@@ -117,3 +117,24 @@ describe('rutina, integridad', () => {
     expect(ROUTINE.map((d) => d.exercises.length)).toEqual([6, 6, 5, 6, 6])
   })
 })
+
+import { LEGAL, LEGAL_DOCS } from '../data/legal'
+
+describe('textos legales', () => {
+  it('hay cuatro documentos completos y con ids únicos', () => {
+    expect(LEGAL_DOCS.map((d) => d.id)).toEqual(['terminos', 'privacidad', 'salud', 'licencias'])
+    for (const d of LEGAL_DOCS) {
+      expect(d.sections.length).toBeGreaterThan(2)
+      for (const s of d.sections) expect(s.p.every((t) => t.trim().length > 20)).toBe(true)
+    }
+  })
+  it('la versión es una fecha y los textos la mencionan', () => {
+    expect(LEGAL.version).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+    for (const d of LEGAL_DOCS) expect(d.intro).toContain(LEGAL.fecha)
+  })
+  it('la privacidad cita la Ley 1581 y los derechos del titular', () => {
+    const txt = JSON.stringify(LEGAL_DOCS.find((d) => d.id === 'privacidad'))
+    expect(txt).toContain('Ley 1581 de 2012')
+    expect(txt).toContain('Superintendencia de Industria y Comercio')
+  })
+})

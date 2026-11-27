@@ -31,7 +31,7 @@ await page.evaluate(async () => {
       const rq = tx.objectStore('sessions').add({ dayId: 'dia-1', startedAt: t, finishedAt: t + 3000000 })
       rq.onsuccess = () => { for (let s = 1; s <= 4; s++) tx.objectStore('sets').add({ sessionId: rq.result, exerciseId: 'hip-thrust', setNo: s, weightKg: w, reps: i === 5 ? 10 : 8 + (s % 2), doneAt: t + s * 120000 }) }
     })
-    tx.objectStore('meta').put({ key: 'installedAt', value: now - 30 * day })
+    tx.objectStore('meta').put({ key: 'installedAt', value: now - 30 * day }); tx.objectStore('meta').put({ key: 'legalVersion', value: '2026-11-27' })
     tx.oncomplete = res
   })
 })

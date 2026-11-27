@@ -62,6 +62,12 @@ export function Ajustes() {
         )}
 
         <div class="row">
+          <h2 class="d" style={{ fontSize: '24px' }}>Legal</h2>
+          <p>Términos de uso, privacidad, aviso de salud y licencias.</p>
+          <a class="btn sec small" href="#/legal">Ver documentos</a>
+        </div>
+
+        <div class="row">
           <h2 class="d" style={{ fontSize: '24px' }}>Borrar datos</h2>
           <p>Elimina todos los días y series registrados en este teléfono. No se puede deshacer.</p>
           {confirmWipe ? (

@@ -6,6 +6,9 @@ import { Progreso } from './screens/Progreso'
 import { Guia } from './screens/Guia'
 import { Ajustes } from './screens/Ajustes'
 import { Instalar } from './screens/Instalar'
+import { Aceptacion, Legal } from './screens/Legal'
+import { getMeta } from './db'
+import { LEGAL } from './data/legal'
 
 const useHash = () => {
   const [h, setH] = useState(location.hash || '#/')
@@ -23,6 +26,16 @@ const useHash = () => {
 export function App() {
   const h = useHash()
   const [, a, b] = h.replace('#', '').split('/')
+  // null = leyendo; false = falta aceptar los textos legales vigentes
+  const [accepted, setAccepted] = useState<boolean | null>(null)
+  useEffect(() => {
+    void getMeta<string>('legalVersion').then((v) => setAccepted(v === LEGAL.version))
+  }, [])
+
+  if (a === 'legal') return <Legal id={b} />
+  if (accepted === null) return <main class="screen nobar" />
+  if (!accepted) return <Aceptacion onDone={() => setAccepted(true)} />
+
   switch (a) {
     case 'sesion':
       return <Sesion key={b} dayId={b} />
