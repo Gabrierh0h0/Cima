@@ -1,0 +1,55 @@
+// Recorrido de rutinas: aceptar, importar por enlace, usar, crear en el editor, elegir ejercicio en sesión.
+// Uso: node scripts/rutinas-shots.mjs <carpeta> <código-de-importación> (con `npm run preview` en 4173)
+import puppeteer from 'puppeteer-core'
+
+const OUT = process.argv[2] + '/'
+const CODE = process.argv[3]
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+const U = 'http://localhost:4173/'
+const b = await puppeteer.launch({ executablePath: 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe', headless: true })
+const p = await b.newPage()
+const errors = []
+p.on('pageerror', (e) => errors.push(String(e)))
+p.on('console', (m) => m.type() === 'error' && errors.push(m.text()))
+await p.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true })
+const shot = async (n) => { await sleep(600); await p.screenshot({ path: OUT + n + '.png' }) }
+const clickText = (t, sel = 'button,a') => p.evaluate((t, sel) => { const e = [...document.querySelectorAll(sel)].find((x) => x.textContent.trim().includes(t)); e?.click(); return !!e }, t, sel)
+
+await p.goto(U + '#/importar/' + CODE)
+await sleep(900)
+for (const x of await p.$$('.check input')) await x.click()
+await clickText('Aceptar y entrar')
+await sleep(700)
+await shot('1-importar')
+await clickText('Guardar y usar')
+await shot('2-semana')
+await p.goto(U + '#/rutinas'); await sleep(500)
+await shot('3-rutinas')
+await p.goto(U + '#/rutinas/editar/nueva'); await sleep(500)
+await p.type('#rname', 'Rutina de prueba')
+await clickText('Añadir ejercicio')
+await sleep(300)
+await p.type('.sheet .field', 'Dominadas lastradas')
+await shot('4-picker')
+await clickText('Crear y añadir')
+await sleep(300)
+await p.click('.erow')
+await shot('5-editor')
+await clickText('Guardar rutina')
+await sleep(700)
+await shot('6-semana-nueva')
+await p.goto(U + '#/rutinas'); await sleep(500)
+// volver a la importada y abrir la sesión del día 2
+await clickText('Usar esta')
+await sleep(600)
+await p.evaluate(() => { location.hash = '#/' })
+await sleep(500)
+await p.evaluate(() => document.querySelectorAll('.strip button')[1]?.click())
+await sleep(300)
+await shot('7-dia2')
+await clickText('Empezar', 'a')
+await sleep(800)
+await clickText('Elegir otro ejercicio')
+await shot('8-elegir')
+console.log('errores:', JSON.stringify(errors))
+await b.close()

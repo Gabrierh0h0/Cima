@@ -2,14 +2,8 @@ import { useState } from 'preact/hooks'
 import { LEGAL, LEGAL_DOCS, legalDoc } from '../data/legal'
 import { setMeta } from '../db'
 import { Icon, Mark } from '../components/Icon'
+import { Back } from '../components/Back'
 
-const back = () => (history.length > 1 ? history.back() : (location.hash = '#/'))
-
-const Back = () => (
-  <button class="link back" onClick={back}>
-    <span class="flip"><Icon n="chev" s={20} /></span>Volver
-  </button>
-)
 
 /** Lista de documentos legales (#/legal) o uno en particular (#/legal/privacidad). */
 export function Legal({ id }: { id?: string }) {

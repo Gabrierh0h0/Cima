@@ -9,6 +9,9 @@ import { Instalar } from './screens/Instalar'
 import { Aceptacion, Legal } from './screens/Legal'
 import { getMeta } from './db'
 import { LEGAL } from './data/legal'
+import { Editor } from './screens/Editor'
+import { Importar, Rutinas } from './screens/Rutinas'
+import { initRoutines } from './lib/routines'
 
 const useHash = () => {
   const [h, setH] = useState(location.hash || '#/')
@@ -25,11 +28,14 @@ const useHash = () => {
 
 export function App() {
   const h = useHash()
-  const [, a, b] = h.replace('#', '').split('/')
+  const [, a, b, c] = h.replace('#', '').split('/')
   // null = leyendo; false = falta aceptar los textos legales vigentes
   const [accepted, setAccepted] = useState<boolean | null>(null)
   useEffect(() => {
-    void getMeta<string>('legalVersion').then((v) => setAccepted(v === LEGAL.version))
+    void (async () => {
+      await initRoutines()
+      setAccepted((await getMeta<string>('legalVersion')) === LEGAL.version)
+    })()
   }, [])
 
   if (a === 'legal') return <Legal id={b} />
@@ -49,6 +55,10 @@ export function App() {
       return <Ajustes />
     case 'instalar':
       return <Instalar />
+    case 'rutinas':
+      return b === 'editar' ? <Editor key={c} id={c} /> : <Rutinas />
+    case 'importar':
+      return <Importar payload={b} />
     default:
       return <Semana />
   }

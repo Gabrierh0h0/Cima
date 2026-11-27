@@ -1,4 +1,5 @@
-import { db, setMeta, type Session, type SetLog } from '../db'
+import { db, getMeta, setMeta, type Session, type SetLog, type StoredRoutine } from '../db'
+import { initRoutines } from './routines'
 
 interface Backup {
   app: 'cima'
@@ -6,6 +7,9 @@ interface Backup {
   exportedAt: number
   sessions: Session[]
   sets: SetLog[]
+  /** Rutinas creadas o recibidas (los respaldos antiguos no las traen). */
+  routines?: StoredRoutine[]
+  activeRoutine?: string
 }
 
 export async function exportBackup(): Promise<boolean> {
@@ -15,6 +19,8 @@ export async function exportBackup(): Promise<boolean> {
     exportedAt: Date.now(),
     sessions: await db.sessions.toArray(),
     sets: await db.sets.toArray(),
+    routines: await db.routines.toArray(),
+    activeRoutine: await getMeta<string>('activeRoutine'),
   }
   const blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
   const name = `cima-respaldo-${new Date().toISOString().slice(0, 10)}.json`
@@ -44,12 +50,18 @@ export async function importBackup(file: File): Promise<number> {
   if (data.app !== 'cima' || !Array.isArray(data.sessions) || !Array.isArray(data.sets)) {
     throw new Error('Este archivo no es un respaldo de Cima.')
   }
-  await db.transaction('rw', db.sessions, db.sets, async () => {
+  await db.transaction('rw', db.sessions, db.sets, db.routines, async () => {
     await db.sessions.clear()
     await db.sets.clear()
     await db.sessions.bulkAdd(data.sessions)
     await db.sets.bulkAdd(data.sets)
+    if (Array.isArray(data.routines)) {
+      await db.routines.clear()
+      await db.routines.bulkAdd(data.routines)
+    }
   })
+  if (typeof data.activeRoutine === 'string') await setMeta('activeRoutine', data.activeRoutine)
+  await initRoutines()
   await setMeta('lastBackupAt', Date.now())
   return data.sessions.length
 }

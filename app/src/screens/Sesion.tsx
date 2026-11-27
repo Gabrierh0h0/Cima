@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'preact/hooks'
 import { db, lastSetsFor, type SetLog } from '../db'
-import { dayById, type Exercise, type Implement } from '../data/routine'
+import type { Exercise, Implement } from '../data/routine'
+import { dayById } from '../lib/routines'
 import { Barbell } from '../components/Barbell'
 import { HowTo } from '../components/HowTo'
 import { Icon } from '../components/Icon'
@@ -15,8 +16,9 @@ const UNIT: Record<Implement, string> = {
   maquina: 'kg en la máquina',
   polea: 'kg en la polea',
   cuerpo: 'kg de lastre (0 es tu peso)',
+  libre: 'kg en total',
 }
-const START: Record<Implement, number> = { barra: 20, mancuernas: 4, maquina: 20, polea: 10, cuerpo: 0 }
+const START: Record<Implement, number> = { barra: 20, mancuernas: 4, maquina: 20, polea: 10, cuerpo: 0, libre: 10 }
 const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v))
 
 export function Sesion({ dayId }: { dayId: string }) {
@@ -31,6 +33,7 @@ export function Sesion({ dayId }: { dayId: string }) {
   const [restEnd, setRestEnd] = useState<number | null>(null)
   const [now, setNow] = useState(Date.now())
   const [how, setHow] = useState<Exercise | null>(null)
+  const [order, setOrder] = useState(false)
   const beeped = useRef(false)
   const busy = useRef(false)
 
@@ -256,11 +259,34 @@ export function Sesion({ dayId }: { dayId: string }) {
           <Icon n="video" s={20} />
           Ver cómo se hace
         </button>
+        <button class="link mut" onClick={() => setOrder(true)}>
+          Elegir otro ejercicio
+        </button>
         <button class="link mut" onClick={() => void skip()}>
           Saltar este ejercicio
         </button>
       </div>
       {how && <HowTo ex={how} onClose={() => setHow(null)} />}
+      {order && (
+        <div class="sheet-wrap" onClick={() => setOrder(false)}>
+          <section class="sheet" role="dialog" aria-modal="true" aria-label="Elegir ejercicio" onClick={(e) => e.stopPropagation()}>
+            <header class="sheet-head">
+              <h2 class="d">¿Con cuál sigues?</h2>
+              <button class="icon-btn" onClick={() => setOrder(false)} aria-label="Cerrar"><Icon n="x" /></button>
+            </header>
+            <ul class="pick">
+              {day.exercises.map((e, i) => (
+                <li key={e.id}>
+                  <button aria-current={i === exIdx ? 'true' : undefined} onClick={() => { setExIdx(i); setRestEnd(null); setOrder(false) }}>
+                    <span>{e.name}</span>
+                    <small>{(done[e.id] ?? 0) >= e.sets ? 'Hecho' : `${done[e.id] ?? 0} de ${e.sets}`}</small>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      )}
     </main>
   )
 }

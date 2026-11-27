@@ -60,7 +60,7 @@ export function HowTo({ ex, onClose }: { ex: Exercise; onClose: () => void }) {
             </li>
           ))}
         </ol>
-        <p class="note mut">{ex.note}</p>
+        {ex.note && <p class="note mut">{ex.note}</p>}
         {ex.youtubeId && (
           <a class="link" href={search} target="_blank" rel="noopener noreferrer">
             Ver otros videos

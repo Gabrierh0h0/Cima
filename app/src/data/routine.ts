@@ -4,7 +4,7 @@
 
 export const ROUTINE_VERSION = 1
 
-export type Implement = 'barra' | 'mancuernas' | 'maquina' | 'polea' | 'cuerpo'
+export type Implement = 'barra' | 'mancuernas' | 'maquina' | 'polea' | 'cuerpo' | 'libre'
 
 export interface Exercise {
   id: string

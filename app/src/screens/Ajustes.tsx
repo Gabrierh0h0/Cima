@@ -26,6 +26,12 @@ export function Ajustes() {
 
       <div class="group">
         <div class="row">
+          <h2 class="d" style={{ fontSize: '24px' }}>Mis rutinas</h2>
+          <p>Crea tu propia rutina, cambia de una a otra o comparte la tuya con un enlace.</p>
+          <a class="btn sec small" href="#/rutinas">Ver mis rutinas</a>
+        </div>
+
+        <div class="row">
           <h2 class="d" style={{ fontSize: '24px' }}>Respaldo</h2>
           <p>Tu progreso vive solo en este teléfono. Guarda un respaldo de vez en cuando por si cambias de celular.</p>
           <p>{last ? `Último respaldo: ${shortDate(last)}.` : 'Aún no has guardado un respaldo.'} {count === 1 ? "1 día registrado" : `${count} días registrados`}.</p>

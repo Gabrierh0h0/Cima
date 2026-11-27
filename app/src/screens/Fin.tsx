@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'preact/hooks'
 import { db, type SetLog } from '../db'
-import { dayById, exerciseById } from '../data/routine'
+import { dayById, exerciseById } from '../lib/routines'
 import { Icon } from '../components/Icon'
 import { kg, minutes } from '../lib/format'
 import { volume } from '../lib/progression'

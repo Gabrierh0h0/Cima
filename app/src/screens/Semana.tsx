@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'preact/hooks'
 import { db, ensureInstalledAt, getMeta, type Session } from '../db'
-import { ROUTINE, type Exercise } from '../data/routine'
+import type { Exercise } from '../data/routine'
+import { activeRoutine, allRoutines } from '../lib/routines'
 import { Icon, Mark } from '../components/Icon'
 import { HowTo } from '../components/HowTo'
 import { isStandalone } from '../lib/device'
@@ -26,6 +27,8 @@ export function Semana() {
 
   if (!sessions) return <main class="screen" />
 
+  const R = activeRoutine()
+  const ROUTINE = R.days
   const now = Date.now()
   const finished = sessions.filter((s) => s.finishedAt)
   const open = [...sessions].reverse().find((s) => !s.finishedAt && now - s.startedAt < 12 * 3600_000)
@@ -48,7 +51,11 @@ export function Semana() {
           <Mark s={22} />
           Cima
         </span>
-        <span class="weeklabel">Semana {week}</span>
+        {allRoutines().length > 1 ? (
+          <a class="weeklabel" href="#/rutinas">{R.name} · Semana {week}</a>
+        ) : (
+          <span class="weeklabel">Semana {week}</span>
+        )}
       </div>
 
       {(needBackup || showInstall) && (
@@ -71,7 +78,7 @@ export function Semana() {
       <section class="hero">
         <h1 class="d big">Día {day.n}</h1>
         <p class="d name">{day.name}</p>
-        <p class="focus">{day.focus}</p>
+        {day.focus && <p class="focus">{day.focus}</p>}
       </section>
 
       <ul class="list">

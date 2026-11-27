@@ -82,8 +82,10 @@ export const LEGAL_DOCS: LegalDoc[] = [
         ],
       },
       {
-        h: '7. Contenido y enlaces de terceros',
+        h: '7. Contenido de terceros y rutinas compartidas',
         p: [
+          'Puedes crear tus propias rutinas y compartirlas con otras personas mediante un enlace. Eres responsable de lo que escribes y de a quién se lo envías.',
+          'Cima no revisa, no avala y no responde por las rutinas creadas por ti o por otras personas. Antes de seguir una rutina recibida, lee el Aviso de salud. No uses Cima para compartir contenido ilícito, ofensivo o que infrinja derechos de terceros.',
           'Los videos de “Cómo se hace” son de YouTube y de sus creadores. Se muestran con el reproductor incrustado de YouTube y, al verlos, aplican los términos y la política de privacidad de YouTube y Google.',
           'No controlamos ese contenido ni respondemos por él. Podemos cambiar o retirar un video o un enlace en cualquier momento.',
         ],
@@ -141,7 +143,8 @@ export const LEGAL_DOCS: LegalDoc[] = [
       {
         h: '3. Qué se guarda en tu dispositivo',
         p: [
-          'Se guardan las fechas de tus sesiones, el peso y las repeticiones de cada serie, la fecha en que instalaste la app, la fecha de tu último respaldo y la versión de los textos legales que aceptaste.',
+          'Se guardan las fechas de tus sesiones, el peso y las repeticiones de cada serie, las rutinas que creas o recibes (los nombres que tú escribes para días y ejercicios), la fecha en que instalaste la app, la fecha de tu último respaldo y la versión de los textos legales que aceptaste.',
+          'Cuando compartes una rutina, su contenido viaja dentro del enlace que envías. No se sube a ningún servidor nuestro y no lo vemos. Quien reciba el enlace puede leerla; compártelo solo con quien quieras.',
           'La finalidad es una sola: mostrarte tu rutina y tu progreso. No pedimos ubicación, fotos, contactos ni datos de salud.',
         ],
       },
@@ -225,6 +228,10 @@ export const LEGAL_DOCS: LegalDoc[] = [
           'Los pesos sugeridos son una referencia calculada con lo que registras, no una prescripción. Elige siempre un peso que puedas controlar con buena técnica.',
           'Los videos y las pistas son una guía y pueden no ajustarse a tu cuerpo o a tus limitaciones. Un profesional puede corregir tu técnica en persona.',
         ],
+      },
+      {
+        h: 'Rutinas de otras personas',
+        p: ['Una rutina que te comparte un amigo o que armas tú no está evaluada por un profesional y puede no ser adecuada para ti. Revisa series, repeticiones y pesos, y ajústalos a tu nivel.'],
       },
       {
         h: 'Tu responsabilidad',

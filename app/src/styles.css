@@ -45,7 +45,7 @@ a{color:inherit;text-decoration:none}
 .top{display:flex;align-items:center;justify-content:space-between;height:40px}
 .brand{display:flex;align-items:center;gap:10px;font:600 22px 'Barlow Condensed';letter-spacing:.04em}
 .weeklabel{color:var(--piedra);font-size:15px}
-.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:20px}
+.strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:8px;margin-top:20px}
 .strip button{height:56px;border-radius:12px;border:1px solid var(--linea);background:var(--g900);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--piedra)}
 .strip button .d{font-size:24px;color:var(--hueso)}
 .strip button .st{font-size:12px;height:14px;display:flex;align-items:center}
@@ -195,3 +195,42 @@ a{color:inherit;text-decoration:none}
 .check input:checked{background:var(--terra);border-color:var(--terra)}
 .check input:checked::after{content:'';width:12px;height:7px;border-left:3px solid #141312;border-bottom:3px solid #141312;transform:rotate(-45deg) translate(1px,-1px)}
 .link-row:has(.ic){flex-direction:row;align-items:center;justify-content:space-between}
+
+/* Rutinas y editor */
+.weeklabel{max-width:60%;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+a.weeklabel{text-decoration:underline;text-decoration-color:var(--piedra);text-underline-offset:4px}
+.tag{font:500 13px Barlow;color:var(--g950);background:var(--exito);border-radius:999px;padding:3px 10px}
+.r-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.r-actions{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.field{width:100%;height:52px;border-radius:12px;background:var(--g900);border:1px solid var(--linea);padding:0 14px;font-size:17px}
+.field:focus-visible{outline-offset:2px}
+.lbl{display:block;margin-top:20px;margin-bottom:8px;color:var(--piedra);font-size:15px}
+.eday{margin-top:28px;padding-top:16px;border-top:1px solid var(--linea);display:flex;flex-direction:column;gap:12px}
+.eday-head{display:flex;gap:6px;align-items:center}
+.day-name{font:600 24px 'Barlow Condensed';flex:1;min-width:0}
+.mini{width:48px;height:48px;flex:none;display:grid;place-items:center;border-radius:12px;background:var(--g800);border:1px solid var(--linea);color:var(--hueso)}
+.mini[disabled]{opacity:.35}
+.elist{list-style:none;border-top:1px solid var(--linea)}
+.elist li{border-bottom:1px solid var(--linea)}
+.erow{width:100%;min-height:52px;display:flex;align-items:center;gap:12px;text-align:left;padding:6px 0}
+.erow .idx{width:22px;color:var(--piedra);font-size:15px}
+.erow .nm{flex:1;font-weight:500;line-height:1.2}
+.erow .sr{color:var(--piedra);font-size:15px;white-space:nowrap}
+.epanel{padding:4px 0 16px;display:flex;flex-direction:column;gap:8px}
+.num-row{display:flex;align-items:center;gap:8px}
+.num-row span{flex:1;color:var(--piedra);font-size:15px}
+.num-row b{width:64px;text-align:center;font-size:26px}
+.epanel-actions{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.save-bar{position:sticky;bottom:0;margin:24px -20px 0;padding:12px 20px calc(12px + var(--sab));background:linear-gradient(to top,var(--g950) 70%,transparent)}
+.hint{text-align:center;font-size:14px;margin-top:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+.chips button{min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--linea);background:var(--g800);color:var(--hueso);font-size:15px}
+.chips button.on{background:var(--hueso);color:var(--g950);border-color:var(--hueso)}
+.newex{margin-top:14px;padding:14px;border-radius:14px;background:var(--g800);border:1px solid var(--linea)}
+.newex p{font-size:15px}
+.pick{list-style:none;margin-top:14px;border-top:1px solid var(--linea)}
+.pick li{border-bottom:1px solid var(--linea)}
+.pick button{width:100%;min-height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;padding:6px 0;font-weight:500;line-height:1.2}
+.pick button[aria-current=true] span{color:var(--terra)}
+.pick small{color:var(--piedra);font:400 14px Barlow;white-space:nowrap}
+.sheet .field{margin-top:12px}

@@ -1,10 +1,17 @@
 import { useEffect, useState } from 'preact/hooks'
 import { db, type SetLog } from '../db'
-import { ALL_EXERCISES, dayOfExercise } from '../data/routine'
+import type { Exercise } from '../data/routine'
+import { activeRoutine, exerciseById, locateExercise } from '../lib/routines'
 import { LineChart, type Point } from '../components/Chart'
 import { TabBar } from './Semana'
 import { kg, shortDate } from '../lib/format'
 import { suggestRaise } from '../lib/progression'
+
+const where = (id: string) => {
+  const w = locateExercise(id)
+  if (!w) return 'Otra rutina'
+  return `Día ${w.day.n}, ${w.day.name}${w.routine.id !== activeRoutine().id ? ` · ${w.routine.name}` : ''}`
+}
 
 export function Progreso() {
   const [sets, setSets] = useState<SetLog[] | null>(null)
@@ -15,7 +22,10 @@ export function Progreso() {
 
   if (!sets) return <main class="screen" />
 
-  const cards = ALL_EXERCISES.map((e) => {
+  // los de la rutina en uso y cualquier otro que ya tenga registros (de otra rutina)
+  const ids = new Set([...activeRoutine().days.flatMap((d) => d.exercises.map((e) => e.id)), ...sets.map((s) => s.exerciseId)])
+  const exercises = [...ids].map(exerciseById).filter((e): e is Exercise => !!e)
+  const cards = exercises.map((e) => {
     const mine = sets.filter((s) => s.exerciseId === e.id)
     const bySession = new Map<number, SetLog[]>()
     for (const s of mine) bySession.set(s.sessionId, [...(bySession.get(s.sessionId) ?? []), s])
@@ -42,7 +52,7 @@ export function Progreso() {
           return (
             <article class="card" key={e.id}>
               <h2 class="d">{e.name}</h2>
-              <p class="day">Día {dayOfExercise(e.id)?.n}, {dayOfExercise(e.id)?.name} · {idx + 1} de {cards.length}</p>
+              <p class="day">{where(e.id)} · {idx + 1} de {cards.length}</p>
               {sessions.length === 0 ? (
                 <p class="empty">Aún no hay registros de este ejercicio.</p>
               ) : (
