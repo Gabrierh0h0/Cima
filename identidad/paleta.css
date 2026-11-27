@@ -1,0 +1,19 @@
+/* Cima: tokens de color (app oscura). Contrastes medidos sobre #141312. */
+:root{
+  /* Neutros */
+  --grafito-950:#141312; --grafito-900:#1B1A19; --grafito-800:#252321; --grafito-700:#34312E;
+  --hueso:#F2EEE8; --piedra:#A39C93;            /* piedra: 6.83:1 sobre grafito-950 */
+  --linea:rgba(242,238,232,.08);                /* líneas finas */
+  /* Marca (una sola acción principal por pantalla) */
+  --terracota:#C8633F;                          /* 4.69:1 */
+  /* Identidad por día, solo como barra, punto o icono (nunca fondos grandes) */
+  --dia-1-malva:#D293C4;   /* Cadena posterior   7.70:1 */
+  --dia-2-pizarra:#82A5E4; /* Push               7.47:1 */
+  --dia-3-ocre:#D7B355;    /* Cadena anterior    9.25:1 */
+  --dia-4-petroleo:#5DBBC6;/* Pull               8.30:1 */
+  --dia-5-oliva:#A2BC75;   /* Full leg           8.82:1 */
+  /* Estados (siempre con icono y texto) */
+  --exito:#61DA92;         /* 10.56:1 */
+  --aviso:#D7B355;         /* mismo ocre */
+  --error:#F66D67;         /* 6.45:1 */
+}

@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-26T00:00:00Z",
+  "title": "Design System: Cima",
+  "extensions": {
+    "colorMeta": {
+      "grafito-950": {"role": "neutral", "displayName": "Grafito 950", "canonical": "#141312", "tonalRamp": ["#0A0909","#141312","#1B1A19","#252321","#34312E","#57524C","#8E8981","#F2EEE8"]},
+      "grafito-900": {"role": "neutral", "displayName": "Grafito 900", "canonical": "#1B1A19", "tonalRamp": ["#0A0909","#141312","#1B1A19","#252321","#34312E","#57524C","#8E8981","#F2EEE8"]},
+      "grafito-800": {"role": "neutral", "displayName": "Grafito 800", "canonical": "#252321", "tonalRamp": ["#0A0909","#141312","#1B1A19","#252321","#34312E","#57524C","#8E8981","#F2EEE8"]},
+      "grafito-700": {"role": "neutral", "displayName": "Grafito 700", "canonical": "#34312E", "tonalRamp": ["#0A0909","#141312","#1B1A19","#252321","#34312E","#57524C","#8E8981","#F2EEE8"]},
+      "hueso": {"role": "neutral", "displayName": "Hueso", "canonical": "#F2EEE8", "tonalRamp": ["#57524C","#8E8981","#A39C93","#C9C3BA","#D8D3CB","#E3DED5","#F2EEE8","#FAF8F5"]},
+      "piedra": {"role": "neutral", "displayName": "Piedra", "canonical": "#A39C93", "tonalRamp": ["#34312E","#57524C","#6F6A63","#8E8981","#A39C93","#B8B2A9","#D8D3CB","#F2EEE8"]},
+      "terracota": {"role": "primary", "displayName": "Terracota", "canonical": "#C8633F", "tonalRamp": ["#3A1D12","#5C2F1E","#7E4029","#A15133","#C8633F","#D68468","#E3A692","#F1CFC3"]},
+      "exito": {"role": "semantic", "displayName": "Éxito", "canonical": "#61DA92", "tonalRamp": ["#143824","#1F5C3B","#2E8556","#44AD72","#61DA92","#8BE4AF","#B3EDCB","#DDF7E8"]},
+      "error": {"role": "semantic", "displayName": "Error", "canonical": "#F66D67", "tonalRamp": ["#4A1513","#7A2320","#A8362F","#D1504A","#F66D67","#F89490","#FBB9B6","#FDE0DF"]}
+    },
+    "typographyMeta": {
+      "display": {"displayName": "Display", "purpose": "Día en Semana, 96 px (72 px en altura baja)."},
+      "cifra-peso": {"displayName": "Cifra de peso", "purpose": "Peso en Sesión, 84 px (68 px en altura baja)."},
+      "cifra-reps": {"displayName": "Cifra de reps", "purpose": "Repeticiones en Sesión, 52 px."},
+      "headline": {"displayName": "Headline", "purpose": "Nombre del ejercicio, 46 px; título de Fin 56 px."},
+      "title": {"displayName": "Title", "purpose": "Nombres de día, secciones y tarjetas, 28 a 34 px."},
+      "boton": {"displayName": "Botón", "purpose": "Etiquetas de botón y summary de Guía."},
+      "body": {"displayName": "Body", "purpose": "Texto general 17 px."},
+      "body-strong": {"displayName": "Body strong", "purpose": "Nombres en listas, peso 500."},
+      "label": {"displayName": "Label", "purpose": "Metadatos y apoyo en Piedra, 12 a 15 px."}
+    },
+    "shadows": [],
+    "motion": [
+      {"name": "chevron", "value": "transform .2s", "purpose": "Giro de 180 grados del chevron en Guía."},
+      {"name": "reduced-motion", "value": "transition:none; animation:none", "purpose": "Todo movimiento se anula con prefers-reduced-motion."}
+    ],
+    "breakpoints": [
+      {"name": "columna", "value": "480px"},
+      {"name": "altura-baja", "value": "max-height: 700px"}
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Única acción principal de la pantalla.",
+      "html": "<button class=\"ds-btn\">Serie hecha</button>",
+      "css": ".ds-btn{display:flex;align-items:center;justify-content:center;width:100%;height:64px;border-radius:14px;background:#C8633F;color:#141312;font:600 24px 'Barlow Condensed',sans-serif;letter-spacing:.02em;border:0;cursor:pointer}.ds-btn:active{filter:brightness(.92)}.ds-btn:focus-visible{outline:2px solid #F2EEE8;outline-offset:3px;border-radius:6px}"
+    },
+    {
+      "name": "Botón secundario",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Acción de apoyo sobre grafito 800.",
+      "html": "<button class=\"ds-btn-sec\">Ver cómo se hace</button>",
+      "css": ".ds-btn-sec{display:flex;align-items:center;justify-content:center;width:100%;height:64px;border-radius:14px;background:#252321;color:#F2EEE8;border:1px solid rgba(242,238,232,.09);font:600 24px 'Barlow Condensed',sans-serif;letter-spacing:.02em;cursor:pointer}.ds-btn-sec:focus-visible{outline:2px solid #F2EEE8;outline-offset:3px;border-radius:6px}"
+    },
+    {
+      "name": "Botón más / menos",
+      "kind": "button",
+      "refersTo": "step-button",
+      "description": "Ajuste de peso y repeticiones, 64 px.",
+      "html": "<button class=\"ds-step\" aria-label=\"Más\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 5v14M5 12h14\"/></svg></button>",
+      "css": ".ds-step{width:64px;height:64px;border-radius:16px;background:#252321;color:#F2EEE8;border:1px solid rgba(242,238,232,.09);display:grid;place-items:center;cursor:pointer}.ds-step:active{background:#34312E}.ds-step:focus-visible{outline:2px solid #F2EEE8;outline-offset:3px}"
+    },
+    {
+      "name": "Tira de días",
+      "kind": "chip",
+      "refersTo": "day-chip",
+      "description": "Celdas de día; la seleccionada pasa a hueso.",
+      "html": "<div class=\"ds-days\"><button class=\"ds-day\" aria-pressed=\"true\"><span class=\"ds-d\">1</span></button><button class=\"ds-day\"><span class=\"ds-d\">2</span></button></div>",
+      "css": ".ds-days{display:grid;grid-template-columns:repeat(2,64px);gap:8px}.ds-day{height:56px;border-radius:12px;border:1px solid rgba(242,238,232,.09);background:#1B1A19;color:#A39C93;display:flex;align-items:center;justify-content:center;cursor:pointer}.ds-d{font:600 24px 'Barlow Condensed',sans-serif;color:#F2EEE8}.ds-day[aria-pressed=true]{background:#F2EEE8;border-color:#F2EEE8}.ds-day[aria-pressed=true] .ds-d{color:#141312}.ds-day:focus-visible{outline:2px solid #F2EEE8;outline-offset:3px}"
+    },
+    {
+      "name": "Fila de ejercicio",
+      "kind": "custom",
+      "refersTo": "lists",
+      "description": "Fila de 52 px con líneas finas en lugar de tarjeta.",
+      "html": "<div class=\"ds-row\"><span class=\"ds-idx\">1</span><span class=\"ds-nm\">Sentadilla</span><span class=\"ds-sr\">4 x 8</span></div>",
+      "css": ".ds-row{display:flex;align-items:center;gap:12px;min-height:52px;padding:6px 0;border-bottom:1px solid rgba(242,238,232,.09);color:#F2EEE8;font:400 17px Barlow,sans-serif}.ds-idx{width:22px;color:#A39C93;font-size:15px}.ds-nm{flex:1;font-weight:500;line-height:1.2}.ds-sr{color:#A39C93;font-size:15px;white-space:nowrap}"
+    },
+    {
+      "name": "Barra de pestañas",
+      "kind": "nav",
+      "refersTo": "tab-bar",
+      "description": "Navegación inferior; activa en hueso con icono terracota.",
+      "html": "<nav class=\"ds-tabs\"><a aria-current=\"page\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 11l8-6 8 6v9H4z\"/></svg>Semana</a><a><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 11l8-6 8 6v9H4z\"/></svg>Progreso</a></nav>",
+      "css": ".ds-tabs{display:flex;background:#1B1A19;border-top:1px solid rgba(242,238,232,.09);padding:8px}.ds-tabs a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-height:48px;justify-content:center;color:#A39C93;font:500 13px Barlow,sans-serif}.ds-tabs a[aria-current=page]{color:#F2EEE8}.ds-tabs a[aria-current=page] svg{color:#C8633F}"
+    },
+    {
+      "name": "Barra con discos",
+      "kind": "custom",
+      "refersTo": "plates",
+      "description": "Componente firma: barra de 20 kg con discos IWF mates por lado.",
+      "html": "<svg viewBox=\"0 0 342 124\" width=\"100%\" role=\"img\" aria-label=\"Barra con 60 kg\"><rect x=\"0\" y=\"58\" width=\"342\" height=\"8\" rx=\"2\" fill=\"#6F6A63\"/><rect x=\"117\" y=\"6\" width=\"20\" height=\"112\" rx=\"3\" fill=\"#B4382E\"/><rect x=\"139\" y=\"6\" width=\"18\" height=\"112\" rx=\"3\" fill=\"#2D5C9B\"/><rect x=\"159\" y=\"27\" width=\"11\" height=\"70\" rx=\"3\" fill=\"#E3DED5\"/><rect x=\"172\" y=\"47\" width=\"8\" height=\"30\" rx=\"2\" fill=\"#57524C\"/></svg>",
+      "css": ""
+    },
+    {
+      "name": "Chip de descanso",
+      "kind": "chip",
+      "refersTo": "rest-chip",
+      "description": "Temporizador de descanso en la esquina de Sesión.",
+      "html": "<div class=\"ds-rest\">1:30</div>",
+      "css": ".ds-rest{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:20px;background:#252321;border:1px solid rgba(242,238,232,.09);color:#F2EEE8;font:600 22px 'Barlow Condensed',sans-serif}"
+    }
+  ],
+  "narrative": {
+    "northStar": "El gimnasio de noche",
+    "overview": "Cima es una app oscura para entrenar de pie, con una mano y poca luz. La dirección Foco muestra una sola cosa por pantalla, una serie a la vez. El color rico existe solo en la barra con discos de competencia en tonos mates; terracota es la voz de la acción. Profundidad tonal, sin sombras, filas con líneas finas en lugar de tarjetas.",
+    "keyCharacteristics": [
+      "Una serie a la vez; sin tarjetas iguales en cuadrícula.",
+      "Cifras tabulares, condensadas, de 52 a 96 px donde importa el dato.",
+      "Terracota solo para acción principal y la serie actual; discos como único color rico.",
+      "Plano: capas de grafito y líneas de 1 px, sin sombras.",
+      "Objetivos táctiles de 48 a 64 px."
+    ],
+    "rules": [
+      {"name": "The Plate Rule", "body": "El color rico pertenece a los discos. Ninguna otra superficie usa rojo, azul, amarillo o verde decorativo; éxito y error son semánticos.", "section": "colors"},
+      {"name": "The One Voice Rule", "body": "Terracota marca la acción principal y lo que se sigue en el tiempo. Una pantalla tiene un solo botón terracota.", "section": "colors"},
+      {"name": "The Big Number Rule", "body": "El dato que se actúa va en Barlow Condensed a 52 px o más; el texto de apoyo nunca compite con él.", "section": "typography"},
+      {"name": "The Tabular Rule", "body": "Cifras tabulares en todo el documento.", "section": "typography"},
+      {"name": "The Flat Rule", "body": "Ninguna sombra. Una capa nueva sube un escalón de grafito o gana un borde de línea.", "section": "elevation"}
+    ],
+    "dos": [
+      "Do mantener una sola acción principal terracota por pantalla, de 64 px de alto.",
+      "Do poner el dato accionable en Barlow Condensed de 52 px o más, con cifras tabulares.",
+      "Do separar con líneas de 1 px (--linea) en lugar de envolver filas en tarjetas.",
+      "Do dibujar iconos nuevos como línea de 1.75 en viewBox 24 con currentColor.",
+      "Do crear profundidad subiendo un escalón de grafito.",
+      "Do usar objetivos de al menos 44 a 48 px y pasar por Icon para todo glifo."
+    ],
+    "donts": [
+      "Don't usar emoji ni iconos de fuente.",
+      "Don't añadir sombras, degradados ni color decorativo fuera de los discos.",
+      "Don't apilar tarjetas iguales de ejercicios.",
+      "Don't usar fuentes del sistema para títulos ni cargar tipografías desde un CDN.",
+      "Don't añadir rasters nuevos; solo los iconos de marca de identidad/export."
+    ],
+    "provenance": {
+      "plates": "Colores de competencia IWF en tonos mates (src/lib/plates.ts).",
+      "fonts": "Barlow 400/500 y Barlow Condensed 500/600 autoalojadas en app/public/fonts (woff2).",
+      "icons": "SVG de línea escritos a mano, viewBox 24, trazo 1.75 (src/components/Icon.tsx).",
+      "raster": "Solo iconos de marca exportados de identidad/export en app/public/icons."
+    },
+    "knownDrift": [
+      ".guide .body p usa #d8d3cb fuera de :root.",
+      "Barbell.tsx y Chart.tsx llevan hex fijos en SVG en lugar de variables.",
+      "El chip de descanso mide 44 px, por debajo del objetivo de 48 px."
+    ]
+  }
+}

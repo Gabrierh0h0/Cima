@@ -1,0 +1,28 @@
+{
+  "brand": "Cima",
+  "tagline": "Sube de a peldaño",
+  "brief": "App de rutina y seguimiento de entrenamiento para personas que entrenan sin entrenador al lado. Producto de somospits.com.co, reutilizable para otros clientes. Debe sentirse firme, calmada y exacta, no motivacional a gritos.",
+  "adjectives": ["firme", "calmada", "exacta", "progresiva"],
+  "criteria": "Éxito: se reconoce a 16 px, funciona en un solo color, se distingue de los logos de gym con mancuernas y llamas, y expresa progreso sin ser un gráfico de barras.",
+  "industry": "consumer-app",
+  "nav": ["Rutina", "Progreso", "Guía"],
+  "brand_color": "#C8633F",
+  "greyscale": false,
+  "designer": "somospits.com.co",
+  "round": 3,
+  "concepts": [
+    {
+      "name": "Cima",
+      "symbol": "final/cima-symbol.svg",
+      "lockup": "final/cima-horizontal.svg",
+      "idea": "Un pico que se alcanza subiendo tres peldaños iguales: la progresión de carga.",
+      "rationale": [
+        "Los peldaños iguales expresan sobrecarga progresiva sin ser un gráfico",
+        "Una sola silueta sólida: legible a 16 px y fácil de bordar o grabar",
+        "La diagonal de 60 grados se repite en la M y la A del logotipo"
+      ]
+    }
+  ],
+  "recommendation": "Cima, en terracota sobre grafito, con el logotipo en hueso.",
+  "next_steps": ["Aprobar la identidad", "Construir el sistema de diseño de la app", "Publicar bajo somospits.com.co"]
+}
